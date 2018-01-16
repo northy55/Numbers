@@ -1,5 +1,5 @@
-import random
 
+# limit guesses
 
 # add help message
 def help_message():
@@ -8,15 +8,22 @@ Your goal is to guess a secret number from a range of numbers. You define the ra
     start_game()
 
 
+
+
+
 # game function
 def game():
+    import random
+    guesses = []
+
     # User selects range of numbers
     a = int(input('Set lower limit: '))
     b = int(input('Set upper limit: '))
     # secret number is a random number
     secret_num = random.randint(a, b)
-    while True:
+    while len(guesses) < 7:
         # Get users input
+        print('Number of guesses: {}/7'.format(len(list(guesses))))
         guess = int(input('Try to guess my secret number: '))
         # Print guess result
         if guess == secret_num:
@@ -24,10 +31,12 @@ def game():
             break
         elif guess < secret_num:
             print('Wrong! My number is bigger than {}'.format(guess))
-            a = guess + 1
         elif guess > secret_num:
             print('Wrong! My number is smaller than {}'.format(guess))
-            a = guess - 1
+        guesses.append(guess)
+        print('\n')
+    else:
+        print('Sorry, You are out of guesses')
 
 
 # Add option to start or Quit the game
