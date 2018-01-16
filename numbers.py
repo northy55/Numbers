@@ -21,30 +21,46 @@ counter = []
 def game():
     import random
     guesses = []
-
-    print('Your current score: {}/{} '.format(len(score),len(counter)))
+    print('')
+    print('Your current score: {}/{} '.format(len(score), len(counter)))
 
     # User selects range of numbers
-    a = int(input('Set lower limit: '))
-    b = int(input('Set upper limit: '))
+    try:
+        a = int(input('Set lower limit: '))
+    except ValueError:
+        print('That is not a number')
+    try:
+        b = int(input('Set upper limit: '))
+    except ValueError:
+        print('That is not a number')
+
     # secret number is a random number
     secret_num = random.randint(a, b)
     while len(guesses) < 5:
         # Get users input
         print('Number of guesses: {}/5'.format(len(list(guesses))))
-        guess = int(input('Try to guess my secret number: '))
+        try:
+            guess = int(input('Try to guess my secret number: '))
+        except ValueError:
+            print("That is not a number\n")
+            continue
         # Print guess result
         if guess == secret_num:
             print('You are right! My number was {}'.format(secret_num))
+            print('')
             counter.append(guess)
             score.append(guess)
             play_again()
         elif guess < secret_num:
+            print('')
             print('Wrong! My number is bigger than {}'.format(guess))
+            print('')
         elif guess > secret_num:
+            print('')
             print('Wrong! My number is smaller than {}'.format(guess))
+            print('')
         guesses.append(guess)
-        print('')
+
     else:
         print('Sorry, You are out of guesses')
         counter.append(guess)
