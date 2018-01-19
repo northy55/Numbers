@@ -12,6 +12,8 @@ def play_again():
     restart = input('Press Enter/Return to play again. Press Q to quit').lower()
     if restart != 'q':
         game()
+    else:
+        sys.exit()
 
 
 score = []
