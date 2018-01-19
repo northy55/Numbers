@@ -1,4 +1,5 @@
 # limit guesses
+import sys
 
 # add help message
 def help_message():
@@ -78,6 +79,6 @@ def start_game():
             game()
         else:
             help_message()
-
-
+    else:
+        sys.exit()
 start_game()
